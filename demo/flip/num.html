@@ -1,0 +1,97 @@
+<!--
+ * @Descripttion: 单个翻牌实现
+ * @Author: 
+ * @Date: 
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Demo</title>
+<link rel="stylesheet" type="text/css" href="num.css">
+</head>
+<body>
+    
+        <!-- 翻牌的外框 -->
+    <div class="flip up" id="flip">
+        <!-- 位于前面的纸牌 -->
+        <div class="digital front number0"></div>
+        <!-- 位于后面的纸牌 -->
+        <div class="digital back number1"></div>
+    </div>
+    
+    <div>
+        <button id="btnUp">向上翻牌</button>
+        <button id="btnDown">向下翻牌</button>
+    </div>
+</body>
+<script>
+    var flip = document.getElementById("flip"); // 获取整个翻牌的dom节点
+    var backNode = document.querySelector(".back"); 
+    var frontNode = document.querySelector(".front");
+    var btnUp = document.getElementById("btnUp"); 
+    var btnDown = document.getElementById("btnDown"); 
+    // 两个按钮的监听事件
+    btnDown.addEventListener('click', function() {
+        flipDown();
+    });
+    btnUp.addEventListener('click', function() {
+        flipUp();
+    });
+
+    // 当前数字
+    var count = 0;
+
+    // 当前是否处于翻转状态
+    var isFlip = false;
+
+    // 向下翻转方法
+    function flipDown(){
+        if(isFlip){
+            return;
+        }
+        // 设置当前展示的数字
+        frontNode.setAttribute('class', 'digital front number' + count);
+        // 获取下一个数字
+        var nextCount = (count === 9) ? 0 : count+1 ;
+        // 设置下一个数字展示
+        backNode.setAttribute('class', 'digital back number' + nextCount);
+        // 添加动画，开始翻转
+        flip.setAttribute('class', 'flip down go');
+        // 将翻转状态改为true
+        isFlip = true;
+        // 翻转结束后，回到初始状态
+        setTimeout(function(){
+            // 去掉go
+            flip.setAttribute('class', 'flip down')
+            // 将翻转态设置为false
+            isFlip = false
+            // 设置前牌文字为+1后的数字
+            frontNode.setAttribute('class', 'digital front number' + nextCount)
+            // 更新当前文字
+            count = nextCount
+        }, 1000);
+    }
+
+    // 向上翻转方法
+    function flipUp(){
+        if(isFlip){
+            return;
+        }
+        frontNode.setAttribute('class', 'digital front number' + count);
+        var nextCount = (count === 9) ? 0 : count+1 ;
+        backNode.setAttribute('class', 'digital back number' + nextCount);
+        flip.setAttribute('class', 'flip up go');
+        isFlip = true;
+        setTimeout(function(){
+            flip.setAttribute('class', 'flip up')
+            isFlip = false
+            frontNode.setAttribute('class', 'digital front number' + nextCount)
+            count = nextCount
+        }, 1000);
+    }
+</script>
+</html>

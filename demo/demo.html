@@ -1,0 +1,55 @@
+<!--
+ * @Title: BONC - React
+ * @Descripttion: 改变伪类的样式，展示字段
+ * @Company: 
+ * @Author:
+ * @Date: 
+ -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Demo</title>
+        <link rel="stylesheet" type="text/css" href="num.css">
+    </head>
+    <style>
+        .ribbon:before {
+             display: block;
+             content: attr(ribbon);
+             background: #eee;
+        }
+                   
+        .ribbon:after {
+             display: block;
+             content: " ";
+             border-left: 5px dotted transparent;
+             border-top: 5px solid #ccc;
+             height: 0;
+             width: 0;
+        }
+         
+        /*** Non-Functional Apperance Styles ***/
+        div.ribbon { margin: 20px; float: left; font-size: 11px; font-family: Arial; }
+        div.ribbon:before { padding: 2px 3px; }
+         
+        </style>
+         
+        <script>
+            // window.onload = function(){
+            //     document.getElementById('attrText').addEventListener('keyup', function(){
+            //         document.getElementById('ribbon').setAttribute('ribbon', this.value);
+            //     });
+            // }
+            document.getElementById('ribbon').setAttribute('ribbon', "aaaa");
+        </script>
+         
+         
+        <body>
+        <!-- <div>ribbonElement.setAttribute('ribbon', <input id="attrText" type="text"/>)</div> -->
+         
+        <div id="ribbon" class="ribbon" ribbon="I am a CSS Ribbon"></div>
+         
+        </body>
+</html>
